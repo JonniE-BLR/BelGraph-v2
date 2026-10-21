@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f4efe4;
+  --bg-paper: #ece4d3;
+  --bg-card: rgba(255, 252, 246, 0.78);
+  --ink: #2b2620;
+  --ink-soft: #5a5147;
+  --accent: #8b1e2b;
+  --accent-soft: #b84a56;
+  --gold: #b8923a;
+  --line: #c9bfa8;
+  --cat-enlightener: #8b1e2b;
+  --cat-writer: #2d5a3d;
+  --cat-figure: #3d4a7a;
+  --cat-scientist: #8c5319;
+  --cat-artist: #7a3d6b;
+  --cat-modern: #0e6f73;
+  --shadow: 0 6px 24px rgba(43, 38, 32, 0.14);
+}
+
+.dark-atlas {
+  --bg: #171512;
+  --bg-paper: #201c18;
+  --bg-card: rgba(38, 33, 28, 0.85);
+  --ink: #f2ece1;
+  --ink-soft: #b5a996;
+  --accent: #d44d5c;
+  --accent-soft: #e06d7a;
+  --gold: #d9b155;
+  --line: #3c352d;
+  --cat-enlightener: #c93b4b;
+  --cat-writer: #3f8257;
+  --cat-figure: #5668a8;
+  --cat-scientist: #b8732a;
+  --cat-artist: #a1528e;
+  --cat-modern: #1d969b;
+  --shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(184, 146, 58, 0.09) 0%, transparent 52%),
+    radial-gradient(circle at 80% 70%, rgba(139, 30, 43, 0.07) 0%, transparent 52%);
+  color: var(--ink);
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Текстура старой бумаги */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.42;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(139, 30, 43, 0.015) 2px, rgba(139, 30, 43, 0.015) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(139, 30, 43, 0.015) 2px, rgba(139, 30, 43, 0.015) 4px);
+  z-index: 0;
+}
+
+.font-serif-display {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Белорусский геометрический орнамент-разделитель */
+.ornament-border {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--accent) 0px,
+    var(--accent) 8px,
+    transparent 8px,
+    transparent 12px,
+    var(--gold) 12px,
+    var(--gold) 16px,
+    transparent 16px,
+    transparent 20px
+  );
+  height: 3px;
+}
+
+@keyframes pulseHalo {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.18;
+  }
+}
+
+.hub-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulseHalo 3.6s ease-in-out infinite;
+}
+
+@keyframes dashFlow {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+
+.link-flow {
+  stroke-dasharray: 7 5;
+  animation: dashFlow 1.5s linear infinite;
+}
+
+@keyframes panelReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-panel-reveal {
+  animation: panelReveal 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Кастомный скроллбар */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-soft);
+}
